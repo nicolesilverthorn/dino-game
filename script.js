@@ -163,7 +163,8 @@ function handleRun(delta, speedScale) {
   currentFrameTime += delta * speedScale;
 }
 
-document.addEventListener("touchstart", handleJump);
+//document.addEventListener("touchstart", handleJump);
+//document.addEventListener("touchstart", onJump);
 function handleJump(delta) {
   if (!isJumping) return;
 
