@@ -7,7 +7,7 @@ const gameoverMessage = document.querySelector("#gameover-message");
 
 document.addEventListener("keydown", startGame, { once: true });
 document.addEventListener("touchstart", startGame, { once: true });
-
+window.document.body.addEventListener("touchstart", onJump(), false);
 
 /* general variables */
 let lastTime;
@@ -182,6 +182,8 @@ function onJump(e) {
 
   yVelocity = JUMP_SPEED;
   isJumping = true;
+  
+  e.preventDefault();
 }
 
 /* ADD CACTUS */
