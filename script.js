@@ -6,8 +6,7 @@ const startMessage = document.querySelector("#start-message");
 const gameoverMessage = document.querySelector("#gameover-message");
 
 document.addEventListener("keydown", startGame, { once: true });
-document.addEventListener("touchstart", startGame, { once: true });
-window.document.body.addEventListener("touchstart", onJump(), false);
+document.addEventListener("touchstart", startGame);
 
 /* general variables */
 let lastTime;
@@ -77,7 +76,7 @@ function handleGameOver() {
   setDinoLose();
   setTimeout(() => {
     document.addEventListener("keydown", startGame, { once: true }); /* prevents accidental click */
-    
+    document.addEventListener("touchstart", startGame, { once: true });
     gameoverMessage.classList.remove("hide");
   }, 100);
 }
@@ -164,6 +163,7 @@ function handleRun(delta, speedScale) {
   currentFrameTime += delta * speedScale;
 }
 
+document.addEventListener("touchstart", handleJump);
 function handleJump(delta) {
   if (!isJumping) return;
 
