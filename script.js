@@ -6,7 +6,7 @@ const startMessage = document.querySelector("#start-message");
 const gameoverMessage = document.querySelector("#gameover-message");
 
 document.addEventListener("keydown", startGame, { once: true });
-document.addEventListener("touchstart", startGame);
+document.addEventListener("touchstart", startGame, { once: true });
 
 /* general variables */
 let lastTime;
