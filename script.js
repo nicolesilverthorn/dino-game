@@ -123,6 +123,9 @@ let dinoFrame;
 let currentFrameTime;
 let yVelocity;
 
+document.addEventListener("keydown", onJump);
+  document.addEventListener("touchstart", onJump);
+
 function setupDino() {
   isJumping = false;
   dinoFrame = 0;
@@ -132,8 +135,8 @@ function setupDino() {
   setCustomProperty(dino, "--bottom", 0);
   document.removeEventListener("keydown", onJump); /* reset the dinosaur if the player dies while jumping */
   document.removeEventListener("touchstart", onJump); /* reset the dinosaur if the player dies while jumping */
-  document.addEventListener("keydown", onJump);
-  document.addEventListener("touchstart", onJump);
+  
+  
 }
 
 function updateDino(delta, speedScale) {
@@ -163,8 +166,9 @@ function handleRun(delta, speedScale) {
   currentFrameTime += delta * speedScale;
 }
 
-//document.addEventListener("touchstart", handleJump);
-//document.addEventListener("touchstart", onJump);
+
+
+
 function handleJump(delta) {
   if (!isJumping) return;
 
@@ -174,7 +178,6 @@ function handleJump(delta) {
     setCustomProperty(dino, "--bottom", 0);
     isJumping = false;
   }
-
   yVelocity -= GRAVITY * delta;
 }
 
