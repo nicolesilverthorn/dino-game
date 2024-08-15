@@ -6,7 +6,13 @@ const startMessage = document.querySelector("#start-message");
 const gameoverMessage = document.querySelector("#gameover-message");
 
 document.addEventListener("keydown", startGame, { once: true });
-document.addEventListener("touchstart", startGame, { once: true });
+document.addEventListener("click", startGame, { once: true });
+document.addEventListener("mousedown", startGame, { once: true });
+
+document.addEventListener("keydown", onJump);
+document.addEventListener("click", onJump);
+document.addEventListener("mousedown", onJump);
+  
 
 /* general variables */
 let lastTime;
@@ -45,6 +51,10 @@ function startGame() {
   startMessage.classList.add("hide");
   gameoverMessage.classList.add("hide");
   window.requestAnimationFrame(update);
+  
+  document.addEventListener("keydown", onJump);
+  document.addEventListener("click", onJump);
+  document.addEventListener("mousedown", onJump);
 }
 
 /* speeds up the game over time */
@@ -76,9 +86,11 @@ function handleGameOver() {
   setDinoLose();
   setTimeout(() => {
     document.addEventListener("keydown", startGame, { once: true }); /* prevents accidental click */
-    document.addEventListener("touchstart", startGame, { once: true });
+    document.addEventListener("click", startGame, { once: true });
+    document.addEventListener("mousedown", startGame, { once: true });
     gameoverMessage.classList.remove("hide");
   }, 100);
+  
 }
 
 /* HANDLING CSS PROPERTIES */
@@ -102,6 +114,7 @@ function setupGround() {
 }
 
 function updateGround(delta, speedScale) {
+	
   grounds.forEach(ground => {
     incrementCustomProperty(ground, "--left", delta * speedScale * GROUND_SPEED * -1); /* moves the ground according to game speed */
 
@@ -123,8 +136,7 @@ let dinoFrame;
 let currentFrameTime;
 let yVelocity;
 
-document.addEventListener("keydown", onJump);
-  document.addEventListener("touchstart", onJump);
+
 
 function setupDino() {
   isJumping = false;
@@ -134,12 +146,17 @@ function setupDino() {
 
   setCustomProperty(dino, "--bottom", 0);
   document.removeEventListener("keydown", onJump); /* reset the dinosaur if the player dies while jumping */
-  document.removeEventListener("touchstart", onJump); /* reset the dinosaur if the player dies while jumping */
+  document.removeEventListener("click", onJump); /* reset the dinosaur if the player dies while jumping */
+  document.removeEventListener("mousedown", onJump); /* reset the dinosaur if the player dies while jumping */
   
-  
+  document.addEventListener("keydown", onJump);
+  document.addEventListener("click", onJump);
+  document.addEventListener("mousedown", onJump);
+ 
 }
 
 function updateDino(delta, speedScale) {
+  
   handleRun(delta, speedScale);
   handleJump(delta);
 }
@@ -167,7 +184,7 @@ function handleRun(delta, speedScale) {
 }
 
 
-
+  
 
 function handleJump(delta) {
   if (!isJumping) return;
@@ -189,6 +206,8 @@ function onJump(e) {
   
   e.preventDefault();
 }
+
+
 
 /* ADD CACTUS */
 const CACTUS_SPEED = 0.05;
