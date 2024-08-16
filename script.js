@@ -183,9 +183,6 @@ function handleRun(delta, speedScale) {
   currentFrameTime += delta * speedScale;
 }
 
-
-  
-
 function handleJump(delta) {
   if (!isJumping) return;
 
@@ -199,15 +196,13 @@ function handleJump(delta) {
 }
 
 function onJump(e) {
-  //if (e.code !== "Space" || isJumping) return;
+  if (isJumping) return; /* prevents double jumping */
 
   yVelocity = JUMP_SPEED;
   isJumping = true;
   
   e.preventDefault();
 }
-
-
 
 /* ADD CACTUS */
 const CACTUS_SPEED = 0.05;
