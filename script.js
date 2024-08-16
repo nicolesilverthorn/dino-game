@@ -6,11 +6,11 @@ const startMessage = document.querySelector("#start-message");
 const gameoverMessage = document.querySelector("#gameover-message");
 
 document.addEventListener("keydown", startGame, { once: true });
-document.addEventListener("touchstart", startGame, { once: true });
+document.addEventListener("click", startGame, { once: true });
 document.addEventListener("mousedown", startGame, { once: true });
 
 document.addEventListener("keydown", onJump);
-document.addEventListener("touchstart", onJump);
+document.addEventListener("click", onJump);
 document.addEventListener("mousedown", onJump);
   
 
@@ -53,7 +53,7 @@ function startGame() {
   window.requestAnimationFrame(update);
   
   document.addEventListener("keydown", onJump);
-  document.addEventListener("touchstart", onJump);
+  document.addEventListener("click", onJump);
   document.addEventListener("mousedown", onJump);
 }
 
@@ -86,7 +86,7 @@ function handleGameOver() {
   setDinoLose();
   setTimeout(() => {
     document.addEventListener("keydown", startGame, { once: true }); /* prevents accidental click */
-    document.addEventListener("touchstart", startGame, { once: true });
+    document.addEventListener("click", startGame, { once: true });
     document.addEventListener("mousedown", startGame, { once: true });
     gameoverMessage.classList.remove("hide");
   }, 100);
@@ -146,11 +146,11 @@ function setupDino() {
 
   setCustomProperty(dino, "--bottom", 0);
   document.removeEventListener("keydown", onJump); /* reset the dinosaur if the player dies while jumping */
-  document.removeEventListener("touchstart", onJump); /* reset the dinosaur if the player dies while jumping */
+  document.removeEventListener("click", onJump); /* reset the dinosaur if the player dies while jumping */
   document.removeEventListener("mousedown", onJump); /* reset the dinosaur if the player dies while jumping */
   
   document.addEventListener("keydown", onJump);
-  document.addEventListener("touchstart", onJump);
+  document.addEventListener("click", onJump);
   document.addEventListener("mousedown", onJump);
  
 }
